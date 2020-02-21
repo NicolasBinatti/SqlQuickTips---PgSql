@@ -68,6 +68,26 @@ ROUND(110.0813, 2) -- 110.08
 ```
 <br>
 
+ - Agrupar os dados em um array. <br>
+ *Obs: o ```distinct``` irá remover registros duplicados no array, o ```FILTER (where nome is not null)``` filtrará para não vir dados nulos, funciona como um ```where``` normal da query.<br>
+ Voce tambem poder usar o ```order by``` dentro do ```array_agg```, porem não funciona se já estiver usando ```distinct```
+```
+select  array_agg(distinct nome) FILTER (where nome is not null) as agg
+```
+<br>
+
+- Varios Updates, com uma Query ou de outra tabela.
+```
+UPDATE tabela_a a SET
+	descricao = b.descricao
+FROM
+  (select id, descricao from tabela_b)b
+WHERE
+a.idperfil = b.idperfil
+```
+<br>
+<br>
+
 <h4> Agora, um pouco mais avançado ! </h4> <br>
 
 - Extrair o valor de uma chave do json
