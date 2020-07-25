@@ -117,11 +117,11 @@ a.idperfil = b.idperfil
 
 - Insere, caso tenha confilto de chave, faz update dos dados.
 ```
-INSERT INTO table (nome, pagador, localidade)
+INSERT INTO table (nome, pagador, localidade) VALUES
   ('Irineu', false, 'BR')
 ON CONFLICT (id) DO UPDATE SET 
-  nome = EXCLUDED.nome
-  pagador = EXCLUDED.pagador
+  nome = EXCLUDED.nome,
+  pagador = EXCLUDED.pagador,
   localidade = EXCLUDED.localidade
 RETURNING *;
 ```
